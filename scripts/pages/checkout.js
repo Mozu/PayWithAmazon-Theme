@@ -175,13 +175,14 @@ require(["modules/jquery-mozu", "underscore", "hyprlive", "modules/backbone-mozu
             this.model.resetAddressDefaults();
         },
         render: function() {
-            preserveElements(this, ['.v-button', '#amazonButonPaymentSection'], function() {
-                CheckoutStepView.prototype.render.apply(this, arguments);
-            });
-            var status = this.model.stepStatus();
-            if ($("#AmazonPayButton").length > 0 && $("#amazonButonPaymentSection").length > 0)
-                $("#AmazonPayButton").removeAttr("style").appendTo("#amazonButonPaymentSection");
-
+          preserveElements(this, ['.v-button','.p-button', '#AmazonPayButton'], function() {
+            CheckoutStepView.prototype.render.apply(this, arguments);
+            if (AmazonPay.isEnabled && !this.amazonInitialized && this.$('#AmazonPayButton').length > 0) {
+              this.amazonInitialized = true;
+              AmazonPay.addCheckoutButton(window.order.id, false);
+            }
+          });
+          var status = this.model.stepStatus();
             if (visaCheckoutSettings.isEnabled && !this.visaCheckoutInitialized && this.$('.v-button').length > 0) {
                 window.onVisaCheckoutReady = _.bind(this.initVisaCheckout, this);
                 require([pageContext.visaCheckoutJavaScriptSdkUrl]);
@@ -537,7 +538,5 @@ require(["modules/jquery-mozu", "underscore", "hyprlive", "modules/backbone-mozu
 
         $checkoutView.noFlickerFadeIn();
 
-        if (AmazonPay.isEnabled)
-            AmazonPay.addCheckoutButton(window.order.id, false);
     });
 });
