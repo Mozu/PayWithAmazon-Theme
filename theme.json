@@ -1,6 +1,6 @@
 {
   "about": {
-        "author": "Mozu",
+    "author": "Mozu",
     "defaultLanguage": "en-US",
     "extends": null,
     "isDesktop": true,
@@ -11,7 +11,7 @@
     "baseTheme": "https://github.com/mozu/core-theme.git",
     "baseThemeChannel": "edge",
     "baseThemeVersion": {
-      "commit": "8bf2cc5e8af8d863516815ae660df0f5dfa7196e",
+      "commit": "709e3d3229dd20b9ed8faec161cb33752ed9d27d",
       "version": "HEAD"
     }
   },
@@ -358,13 +358,13 @@
       "template": "forgot-password",
       "title": "Forgot Password",
       "userCreatable": false
-        },
-        {
-            "entityType": "orderStatus",
-            "id": "orderStatus",
-            "template": "order-status",
-            "title": "Order Status",
-            "userCreatable": false
+    },
+    {
+      "entityType": "orderStatus",
+      "id": "orderStatus",
+      "template": "order-status",
+      "title": "Order Status",
+      "userCreatable": false
     }
   ],
   "settings": {
@@ -407,7 +407,7 @@
     "itemListingThumbSize": 80,
     "listProductCode": true,
     "listProductShortDesc": true,
-        "listVolumePricing": false,
+    "listVolumePricing": false,
     "listProductThumbSize": 160,
     "maxProductImageThumbnailSize": 50,
     "maxProductSummaryWords": 40,

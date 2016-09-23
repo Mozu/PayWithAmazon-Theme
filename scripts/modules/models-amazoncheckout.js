@@ -36,6 +36,8 @@ define([
                         var fulfillmentInfo = me.get("fulfillmentInfo");
                         fulfillmentInfo.shippingMethodCode = shippingMethod.shippingMethodCode;
                         fulfillmentInfo.shippingMethodName = shippingMethod.shippingMethodName;
+                     
+                        
                         me.apiModel.update({ fulfillmentInfo: fulfillmentInfo}).then(
                             function() {
                                 //me.isLoading (false);
@@ -101,6 +103,12 @@ define([
                     me.awsData = fulfillmentInfo.data;
                 else 
                     fulfillmentInfo.data = me.awsData;
+
+                   var user = require.mozuData('user');
+                    if (user && user.email)
+                        fulfillmentInfo.fulfillmentContact.email =  user.email; 
+                    else 
+                        fulfillmentInfo.fulfillmentContact = null;
 
                 me.apiUpdateShippingInfo( fulfillmentInfo ).then(function(result) {
                     me.set("fulfillmentInfo",result.data);
